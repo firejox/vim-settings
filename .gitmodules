@@ -82,3 +82,6 @@
 [submodule ".vim/pack/start/vim-airline-themes"]
 	path = .vim/pack/plugins/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule ".vim/colors/jellybeans"]
+	path = .vim/pack/plugins/start/jellybeans
+	url = https://github.com/nanotech/jellybeans.vim.git

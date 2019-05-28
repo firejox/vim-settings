@@ -151,6 +151,14 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+" colortheme
+set t_Co=256
+set termguicolors
+colorscheme jellybeans
+
+" airline theme
+let g:airline_theme='jellybeans'
+
 " nerd tree
 nnoremap <leader>nt :NERDTreeToggle<CR>
 
