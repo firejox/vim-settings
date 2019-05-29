@@ -143,7 +143,7 @@ nnoremap <silent><leader>t] :tabnext<cr>
 " terminal mapping
 if has('terminal')
   tnoremap <ESC> <C-W>N
-  nnoremap <silent><leader>tty :tabnew<cr><esc>:terminal ++curwin<cr>
+  nnoremap <silent><leader>tty :tab terminal<cr>
 endif
 
 " status line
