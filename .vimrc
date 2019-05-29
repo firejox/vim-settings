@@ -112,11 +112,15 @@ set wrap
 " disable highlight when <leader><cr> is pressed
 nnoremap <silent> <leader><cr> :noh<cr>
 
+""
+" setup your keybindings outside to control window/buffer/tabpage
+""
+
 " move window
-nnoremap <silent><C-j> :wincmd j<cr>
-nnoremap <silent><C-k> :wincmd k<cr>
-nnoremap <silent><C-l> :wincmd l<cr>
-nnoremap <silent><C-h> :wincmd h<cr>
+nnoremap <silent><leader>wj :wincmd j<cr>
+nnoremap <silent><leader>wk :wincmd k<cr>
+nnoremap <silent><leader>wl :wincmd l<cr>
+nnoremap <silent><leader>wh :wincmd h<cr>
 
 " close current buffer
 nnoremap <leader>bd :bdelete!<cr>
@@ -125,17 +129,22 @@ nnoremap <leader>bd :bdelete!<cr>
 nnoremap <leader>ba :bufdo bd<cr>
 
 " buffer next/previous
-nnoremap <leader>l :bnext<cr>
-nnoremap <leader>h :bprevious<cr>
+nnoremap <leader>bl :bnext<cr>
+nnoremap <leader>bh :bprevious<cr>
 
 " tabs handle
 nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
-nnoremap <silent><M-[> :tabprevious<cr>
-nnoremap <silent><M-]> :tabnext<cr>
-nnoremap <silent><C-t> :tabnew<cr>
+nnoremap <silent><leader>t[ :tabprevious<cr>
+nnoremap <silent><leader>t] :tabnext<cr>
+
+" terminal mapping
+if has('terminal')
+  tnoremap <ESC> <C-W>N
+  nnoremap <silent><leader>tty :tabnew<cr><esc>:terminal ++curwin<cr>
+endif
 
 " status line
 set laststatus=2
