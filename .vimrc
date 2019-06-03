@@ -135,7 +135,8 @@ nnoremap <silent><leader>t] :tabnext<cr>
 
 " terminal mapping
 if has('terminal')
-  tnoremap <ESC> <C-W>N
+  inoremap <F12> <ESC>
+  tnoremap <F12> <C-W>N
   nnoremap <silent><leader>tty :tab terminal<cr>
 endif
 
