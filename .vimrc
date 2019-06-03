@@ -90,16 +90,9 @@ set expandtab
 set smarttab
 
 " set tabstop 
-let g:LinuxKernelDeveloping = get(g:, 'LinuxKernelDeveloping', 0)
-if g:LinuxKernelDeveloping
-  set tabstop=8
-  set shiftwidth=8
-  set softtabstop=8
-else
-  set tabstop=4
-  set shiftwidth=4
-  set softtabstop=4
-end
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 " line break
 set lbr
@@ -216,3 +209,11 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" linux kernel coding style
+let g:LinuxKernelDeveloping = get(g:, 'LinuxKernelDeveloping', 0)
+
+if g:LinuxKernelDeveloping
+  packadd vim-addon-linux-coding-style
+  SetLinuxFormatting
+endif

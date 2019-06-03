@@ -85,3 +85,6 @@
 [submodule ".vim/colors/jellybeans"]
 	path = .vim/pack/plugins/start/jellybeans
 	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule ".vim/pack/plugins/opt/vim-addon-linux-coding-style"]
+	path = .vim/pack/plugins/opt/vim-addon-linux-coding-style
+	url = https://github.com/firejox/vim-addon-linux-coding-style.git

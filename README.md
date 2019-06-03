@@ -30,3 +30,4 @@ Personal Vim settings and prefered plugins
 24. [vim-repeat](https://github.com/tpope/vim-repeat) *repeat.vim: enable repeating supported plugin maps with "."*
 25. [vim-snippets](https://github.com/honza/vim-snippets) *vim-snipmate default snippets (Previously snipmate-snippets)*
 26. [vim-surround](https://github.com/tpope/vim-surround) *surround.vim: quoting/parenthesizing made simple*
+27. [vim-addon-linux-coding-style](https://github.com/firejox/vim-addon-linux-coding-style) *Vim plugin to respect the Linux kernel coding style*
