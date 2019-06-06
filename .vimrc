@@ -130,8 +130,8 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
-nnoremap <silent><leader>t[ :tabprevious<cr>
-nnoremap <silent><leader>t] :tabnext<cr>
+nnoremap <silent><leader>t- :tabprevious<cr>
+nnoremap <silent><leader>t+ :tabnext<cr>
 
 " terminal mapping
 if has('terminal')
