@@ -88,3 +88,6 @@
 [submodule ".vim/pack/plugins/opt/vim-addon-linux-coding-style"]
 	path = .vim/pack/plugins/opt/vim-addon-linux-coding-style
 	url = https://github.com/firejox/vim-addon-linux-coding-style.git
+[submodule ".vim/pack/plugins/start/vim-licenses"]
+	path = .vim/pack/plugins/start/vim-licenses
+	url = https://github.com/antoyo/vim-licenses.git
