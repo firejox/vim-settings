@@ -130,8 +130,12 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
-nnoremap <silent><leader>t- :tabprevious<cr>
-nnoremap <silent><leader>t+ :tabnext<cr>
+nnoremap <silent><leader>t[ :tabprevious<cr>
+nnoremap <silent><leader>t] :tabnext<cr>
+
+" set mouse
+set ttymouse=xterm2
+set mouse=a
 
 " terminal mapping
 if has('terminal')
@@ -156,6 +160,8 @@ map <leader>s? z=
 
 " colortheme
 set t_Co=256
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 colorscheme jellybeans
 
@@ -187,6 +193,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_cpp_compiler = "clang++"
+let g:syntastic_cpp_compiler_options = "-std=c++20 -Wall -Wextra -Wpedantic"
+
 " tabular
 nnoremap <leader>a= :Tabularize /=<CR>
 vnoremap <leader>a= :Tabularize /=<CR>
@@ -210,6 +219,9 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" latex flavor
+let g:tex_flavor='latex'
 
 " linux kernel coding style
 let g:LinuxKernelDeveloping = get(g:, 'LinuxKernelDeveloping', 0)

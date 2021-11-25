@@ -91,3 +91,6 @@
 [submodule ".vim/pack/plugins/start/vim-licenses"]
 	path = .vim/pack/plugins/start/vim-licenses
 	url = https://github.com/antoyo/vim-licenses.git
+[submodule ".vim/pack/plugins/start/vimtex"]
+	path = .vim/pack/plugins/start/vimtex
+	url = https://github.com/lervag/vimtex.git
