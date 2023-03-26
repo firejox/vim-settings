@@ -16,6 +16,7 @@ set so=7
 
 " trun on wild menu
 set wildmenu
+set wildcharm=<Tab>
 
 " ignore specific files
 set wildignore=*.o,*~,*.pyc,*.obj,*.swp,*.zip
@@ -32,7 +33,7 @@ set nu
 set ruler
 
 " command bar height
-set cmdheight=2
+set cmdheight=1
 
 " buffer become hide when it is abondoned
 set hid
@@ -103,35 +104,47 @@ set cindent
 set wrap
 
 " disable highlight when <leader><cr> is pressed
-nnoremap <silent> <leader><cr> :noh<cr>
+nnoremap <leader><cr> <Cmd>noh<cr>
 
 ""
 " setup your keybindings outside to control window/buffer/tabpage
 ""
 
 " move window
-nnoremap <silent><leader>wj :wincmd j<cr>
-nnoremap <silent><leader>wk :wincmd k<cr>
-nnoremap <silent><leader>wl :wincmd l<cr>
-nnoremap <silent><leader>wh :wincmd h<cr>
+nnoremap <leader>wj <Cmd>wincmd j<cr>
+nnoremap <leader>wk <Cmd>wincmd k<cr>
+nnoremap <leader>wl <Cmd>wincmd l<cr>
+nnoremap <leader>wh <Cmd>wincmd h<cr>
 
 " close current buffer
-nnoremap <leader>bd :bdelete!<cr>
+nnoremap <leader>bd <Cmd>bdelete!<cr>
 
 " delete all buffers
-nnoremap <leader>ba :bufdo bd<cr>
+nnoremap <leader>ba <Cmd>bufdo bd<cr>
 
 " buffer next/previous
-nnoremap <leader>bl :bnext<cr>
-nnoremap <leader>bh :bprevious<cr>
+nnoremap <leader>bl <Cmd>bnext<cr>
+nnoremap <leader>bh <Cmd>bprevious<cr>
+
+" buffer search
+nnoremap <leader>b/ :sb <Tab>
+
+" switch buffer
+set switchbuf=useopen,usetab,split
 
 " tabs handle
-nnoremap <leader>tn :tabnew<cr>
-nnoremap <leader>to :tabonly<cr>
-nnoremap <leader>tc :tabclose<cr>
-nnoremap <leader>tm :tabmove<cr>
-nnoremap <silent><leader>t[ :tabprevious<cr>
-nnoremap <silent><leader>t] :tabnext<cr>
+set showtabline=0
+set tabpagemax=100
+nnoremap <leader>tn <Cmd>tabnew<cr>
+nnoremap <leader>to <Cmd>tabonly<cr>
+nnoremap <leader>tc <Cmd>tabclose<cr>
+nnoremap <leader>tm <Cmd>tabmove<cr>
+nnoremap <leader>t[ <Cmd>tabprevious<cr>
+nnoremap <leader>t] <Cmd>tabnext<cr>
+
+"quickfix window
+nnoremap <leader>co <Cmd>copen<cr>
+nnoremap <leader>cc <Cmd>cclose<cr>
 
 " set mouse
 set ttymouse=xterm2
@@ -141,7 +154,7 @@ set mouse=a
 if has('terminal')
   inoremap <F12> <ESC>
   tnoremap <F12> <C-W>N
-  nnoremap <silent><leader>tty :tab terminal<cr>
+  nnoremap <leader>tty <Cmd>tab terminal<cr>
 endif
 
 " status line
@@ -151,7 +164,7 @@ set laststatus=2
 autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " spell check
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss <Cmd>setlocal spell!<cr>
 
 map <leader>sn ]s
 map <leader>sp [s
@@ -168,8 +181,14 @@ colorscheme jellybeans
 " airline theme
 let g:airline_theme='jellybeans'
 
+" airline
+"let g:airline#extensions#tabline#enabled = 1
+
+" ale
+let g:airline#extensions#ale#enabled = 1
+
 " nerd tree
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nt <Cmd>NERDTreeToggle<CR>
 
 " ctrlp
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -184,28 +203,11 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " tabular
-nnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
+nnoremap <leader>a= <Cmd>Tabularize /=<CR>
+vnoremap <leader>a= <Cmd>Tabularize /=<CR>
 
 " tagbar
-nnoremap <leader>tg :TagbarToggle<CR>
-
-" vim expand region
-" map K <Plug>(expand_region_expand) " default +
-" map J <Plug>(expand_region_shrink) " default _
-
-" vim multiple cursors
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+nnoremap <leader>tg <Cmd>TagbarToggle<CR>
 
 " latex flavor
 let g:tex_flavor='latex'
