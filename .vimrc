@@ -1,3 +1,9 @@
+" vim nocompatible
+set nocompatible
+
+" setup search path
+set path+=**
+
 " vim history
 set history=500
 
@@ -126,8 +132,12 @@ nnoremap <leader>ba <Cmd>bufdo bd<cr>
 nnoremap <leader>bl <Cmd>bnext<cr>
 nnoremap <leader>bh <Cmd>bprevious<cr>
 
+" split buffer next/previous
+nnoremap <leader>sbl <Cmd>sbnext<cr>
+nnoremap <leader>sbh <Cmd>sbprevious<cr>
+
 " buffer search
-nnoremap <leader>b/ :sb <Tab>
+"nnoremap <leader>b\ <ESC>:sb <Tab>
 
 " switch buffer
 set switchbuf=useopen,usetab,split
@@ -146,13 +156,18 @@ nnoremap <leader>t] <Cmd>tabnext<cr>
 nnoremap <leader>co <Cmd>copen<cr>
 nnoremap <leader>cc <Cmd>cclose<cr>
 
+"location window
+nnoremap <leader>lo <Cmd>lopen<cr>
+nnoremap <leader>lc <Cmd>lclose<cr>
+
 " set mouse
 set ttymouse=xterm2
 set mouse=a
 
 " terminal mapping
 if has('terminal')
-  inoremap <F12> <ESC>
+  inoremap <F12> <C-O>
+  cnoremap <F12> <ESC>
   tnoremap <F12> <C-W>N
   nnoremap <leader>tty <Cmd>tab terminal<cr>
 endif
@@ -161,7 +176,10 @@ endif
 set laststatus=2
 
 " remove all trailing whitespace
-autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+augroup rm_trailing_group
+    autocmd!
+    autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+augroup end
 
 " spell check
 map <leader>ss <Cmd>setlocal spell!<cr>
@@ -178,19 +196,35 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 colorscheme jellybeans
 
+" grep setting
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+endif
+
 " airline theme
 let g:airline_theme='jellybeans'
 
-" airline
-"let g:airline#extensions#tabline#enabled = 1
-
 " ale
 let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_cpp_options="-std=c++23 -Wall"
+let g:ale_completion_enabled = 0
+"set omnifunc=ale#completion#OmniFunc
 
 " nerd tree
 nnoremap <leader>nt <Cmd>NERDTreeToggle<CR>
 
+" gutentags
+let g:gutentags_file_list_command = {
+  \ 'markers': {
+    \ '.git': 'git ls-files -co --exclude-standard',
+    \ '.hg': 'hg files',
+    \ },
+  \ }
+
 " ctrlp
+let g:ctrlp_map = '<leader>ctrlp'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -198,9 +232,21 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': ['<c-t>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+  \ 'AcceptSelection("t")': ['<cr>'],
+  \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+  \ 'ToggleType(1)':        ['<s-left>', '<c-f>', '<c-up>'],
+  \ 'ToggleType(-1)':       ['<s-right>', '<c-b>', '<c-down>'],
+  \ }
+
+let g:ctrlp_extensions = ['tag', 'quickfix']
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_switch_buffer = 'Et'
 
 " supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "context"
 
 " tabular
 nnoremap <leader>a= <Cmd>Tabularize /=<CR>
