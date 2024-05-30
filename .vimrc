@@ -178,7 +178,7 @@ set laststatus=2
 " remove all trailing whitespace
 augroup rm_trailing_group
     autocmd!
-    autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+    autocmd FileType c,cpp,java,php,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
 augroup end
 
 " spell check
@@ -208,8 +208,11 @@ let g:airline_theme='jellybeans'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
-let g:ale_cpp_options="-std=c++23 -Wall"
+let g:ale_cpp_cc_options = '-std=c++20 -Wall'
+let g:ale_cpp_clangd_options = '-std=c++20'
 let g:ale_completion_enabled = 0
+let g:ale_c_build_dir_names = ['build', 'bin', 'build/release', 'build/debug']
+let g:ale_cpp_clangcheck_options='-extra-arg="-std=c++20"'
 "set omnifunc=ale#completion#OmniFunc
 
 " nerd tree
@@ -237,12 +240,13 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<cr>'],
   \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-  \ 'ToggleType(1)':        ['<s-left>', '<c-f>', '<c-up>'],
-  \ 'ToggleType(-1)':       ['<s-right>', '<c-b>', '<c-down>'],
+  \ 'ToggleType(1)':        ['<s-right>', '<c-f>', '<c-up>'],
+  \ 'ToggleType(-1)':       ['<s-left>', '<c-b>', '<c-down>'],
   \ }
 
 let g:ctrlp_extensions = ['tag', 'quickfix']
 let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 't'
 let g:ctrlp_switch_buffer = 'Et'
 
 " supertab
